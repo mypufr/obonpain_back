@@ -1,0 +1,23 @@
+<%- include('partials/header') %> 
+ 
+<h2>Création d'une date de livraison</h2>
+
+<form method="post" action="/admin/dates-livraison">
+   <div>
+        <label for="date">Date : </label>
+        <input type="datetime" name="date" id="date" value = "" required/>
+    </div>
+    <div>
+        <input type="radio" name="status" id="statusTrue" value="true" checked/>
+        <label for="statusTrue">Date valide</label>
+        <input type="radio" name="status" id="statusFalse" value="false"/>
+        <label for="statusFalse">Date annulée</label> 
+    </div>
+    
+    <button class="button" type="submit">Créer une nouvelle date</button>
+
+    </form>
+    <a href="/admin/dates-livraison"><button class="button">Annuler</button></a>
+    
+
+<%- include('partials/footer') %>

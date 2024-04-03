@@ -1,0 +1,51 @@
+<%- include('partials/header') %>
+
+<h2>Listes des commandes</h2>
+
+<a href="/admin/commandes/lieux-livraison"><button class="button">Créer une commande</button></a>
+<br>
+<br>
+
+<table>
+	<thead>
+        <tr>
+            <th>n° commande</th>
+            <th>Date livraison</th>
+            <th>Lieu livraison</th>                        
+            <th>Client</th>
+            <th>Pain</th>
+            <th>poids</th>                         
+            <th>Moulage</th>
+            <th>Quantité</th>
+            <th>Prix</th>            
+            <th></th>  
+            </tr>
+	</thead>
+	<% ordersList.forEach(order => { %>
+            <tr>
+            <td><%= order.id %></td>
+            <td><%= order.delivery_date_name.toLocaleDateString('en-GB') %></td>
+            <td><%= order.delivery_place_name %></td>
+            <td><%= order.last_name %> <%= order.first_name %></td>
+            <td><%= order.name %></td>
+            <td><%= order.weight %> g</td>
+ 
+            <% let mould %>
+            <% if (order.mould_name === 'Non moulé') { mould = '/' } else {mould = "moulé"} %>           
+
+            <td><%= mould %></td>
+
+            <td><%= order.quantity %></td>
+            <th><%= parseFloat(order.price).toFixed(2) %> €</th> 
+
+            <% if (order.customer_id !== order.creator_id) { %>
+            <td><a href="/admin/commandes/<%= order.bread_has_order_id %>"><button class="button">Modifier</button></td>
+                <% } %>
+            </tr></a>
+    <%}); %>
+
+</table>
+
+
+
+<%- include('partials/footer') %>

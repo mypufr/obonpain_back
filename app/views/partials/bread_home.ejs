@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+
+<h2>Les pains</h2>
+
+<a href="/admin/pains/creation"> <button class="button">Créer un nouveau pain</button></a>
+<br>
+<br>
+<table>
+	<thead>
+        <tr>
+            <th>Gamme</th>
+            <th>Poids</th> 
+            <th>Moule</th>
+            <th>prix</th>
+            <th>statut</th>
+            <th></th>            
+            </tr>
+	</thead>
+	<% productsList.forEach(bread => { %>
+            <tr>
+            <td><%= bread.bread_type_name %></td>
+            <td><%= bread.weight %> g</td>              
+            <td><%= bread.mould_name %></td>
+            <td><%= parseFloat(bread.price).toFixed(2) %> €</td>
+            <% let status %>
+            <% if (bread.status === true) { status = "activé" } else {status = "désactivé"} %>           
+            <td><%= status %></td>
+            <td><a href="/admin/pains/<%= bread.id %>"><button class="button">Modifier</button></td>
+            </tr></a>
+    <%}); %>
+
+</table>
+
+
+<%- include('partials/footer') %>

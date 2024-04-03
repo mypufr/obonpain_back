@@ -1,0 +1,36 @@
+<%- include('partials/header') %> 
+
+
+<h2>Liste des clients</h2>
+
+<table>
+	<thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Statut</th>
+            <th>Email</th>
+            <th>Newsletter</th>
+        </tr>
+	</thead>
+    <% clientsList.forEach(user => { %>
+        <tr>
+            <td><%= user.last_name %></td>
+            <td><%= user.first_name %></td>
+            <% let status %>
+            <% if (user.status === true) { status = "actif" } else {status = "bloqué"} %>           
+            <td><%= status %></td>
+            <td><%= user.email %></td>
+            <% let agreement %>
+            <% if (user.agreement === true) { agreement = "inscrit" } else {agreement = "non inscrit"} %>
+            <td><%= agreement %></td>
+        
+            <td><a href="/admin/clients/<%= user.id %>"><button class="button">Détail</button></a></td>
+
+        </tr>
+    <%}); %>
+    </table>
+</div>
+
+
+<%- include('partials/footer') %>

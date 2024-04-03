@@ -1,0 +1,216 @@
+
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+@route=places
+
+### Page 404
+GET {{endpoint}}/truc
+
+
+#########################  FEATURE /PLACES  #####################
+
+
+### VISITEUR (non autorisé) = récupération de TOUS LES LIEUX
+GET {{endpoint}}/{{route}}
+
+
+### ADMIN (autorisé) = récupération de TOUS LES LIEUX
+GET {{endpoint}}/{{route}}
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### CLIENT (autorisé) = récupération de TOUS LES LIEUX
+GET {{endpoint}}/{{route}}
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+######  POST  ######
+
+### VISITEUR (non autorisé) = creation un lieu
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+
+{
+  "name" : "2 bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+### ADMIN (autorisé) = creation un lieu
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "2 bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+
+### CLIENT (non autorisé) = creation un lieu
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+{
+  "name" : "3 bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+
+### création d'un lieu avec infos manquantes
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "12 bon Coin",
+  "adress":  "85 rue des lilas",
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+### creation d'un lieu avec une erreur de typage
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "O bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": 84600, 
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+
+#########################  FEATURE PLACES/:id  #####################
+
+### VISITEUR (non autorisé) = récupération d'un lieu avec un id
+GET {{endpoint}}/{{route}}/2
+
+### ADMIN (autorisé) = récupération d'un lieu avec un id
+GET {{endpoint}}/{{route}}/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### CLIENT (non autorisé) = récupération d'un lieu avec un id
+GET {{endpoint}}/{{route}}/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+
+### récupération d'un lieu avec un id qui n'est pas un nombre
+GET {{endpoint}}/{{route}}/n
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### récupération d'un lieu avec un id qui n'existe pas
+GET {{endpoint}}/{{route}}/200
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+
+######  PATCH  ######
+
+### VISITEUR (non autorisé) = Modification d'un lieu par son id
+PATCH {{endpoint}}/{{route}}/2
+
+### ADMIN (autorisé) = Modification d'un lieu par son id
+PATCH {{endpoint}}/{{route}}/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "20 bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "city": "Nantes",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+### CLIENT (non autorisé) = Modification d'un lieu par son id
+PATCH {{endpoint}}/{{route}}/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+{
+  "name" : "20 bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "city": "Nantes",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+
+### Modification d'un lieu par un id incorrect
+PATCH {{endpoint}}/{{route}}/bip
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "O bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+### Modification d'un lieu avec un id inexistant
+PATCH {{endpoint}}/{{route}}/200
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "O bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+### Modification d'un lieu avec une propriété manquante
+PATCH {{endpoint}}/{{route}}/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "O bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": "84600", 
+  "information": "ouvert de 7h30 à 20h"
+}
+
+### Modification d'un lieu avec une propriété avec le mauvais type
+PATCH {{endpoint}}/{{route}}/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "O bon Coin",
+  "adress":  "85 rue des lilas",
+  "zip_code": 84600, 
+  "city": "Angers",
+  "information": "ouvert de 7h30 à 20h"
+}
+
+
+#########################  FEATURE /PLACES/DATES  #####################
+
+
+### VISITEUR (non autorisé) = récupération de TOUS LES LIEUX
+GET {{endpoint}}/{{route}}/dates
+
+
+### ADMIN (non-autorisé) = récupération de TOUS LES LIEUX
+GET {{endpoint}}/{{route}}/dates
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### CLIENT (autorisé) = récupération de TOUS LES LIEUX
+GET {{endpoint}}/{{route}}/dates
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+### CLIENT (autorisé) = récupération de TOUS LES LIEUX avec une mauvaise route
+GET {{endpoint}}/{{route}}/date
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4

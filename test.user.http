@@ -1,0 +1,93 @@
+
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+#########################  FEATURE USERS  #################################
+
+### VISITEUR (non-autorisé) = Envoyer la liste des utilisateurs
+GET {{endpoint}}/users
+
+### ADMIN (autorisé) = Envoyer la liste des utilisateurs
+GET {{endpoint}}/users
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### CLIENT (non autorisé) = Envoyer la liste des utilisateurs
+GET {{endpoint}}/users
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+#########################  FEATURE USERS/:id   
+#################################
+
+### VISITEUR (non-autorisé) = récupération d'un utilisateur avec un id
+GET {{endpoint}}/users/3
+
+### ADMIN (autorisé) = récupération d'un utilisateur avec un id
+GET {{endpoint}}/users/3
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### CLIENT (autorisé) = récupération d'un utilisateur avec un id
+GET {{endpoint}}/users/3
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+### récupération d'un utilisateur avec un id qui n'existe pas
+GET {{endpoint}}/users/100
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### récupération d'un utilisateur avec un id qui n'est pas un nombre
+GET {{endpoint}}/users/h
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### ADMIN (autorisé) = Modification d'un utilisateur par son id
+PATCH {{endpoint}}/users/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "first_name": "Ben",
+  "last_name": "Bond",
+  "email": "bob@gmail.com",
+  "password": "benbenben",
+  "phone": "0404040406",
+  "adress": "Les bois",
+  "zip_code": "38810",
+  "city": "Grenoble",
+  "status": true,
+  "role": "user",
+  "agreement": true
+}
+
+### CLIENT (autorisé) = Modification d'un utilisateur par son id
+PATCH {{endpoint}}/users/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+{
+  "first_name": "Ben",
+  "last_name": "Bond",
+  "email": "bob@gmail.com",
+  "password": "benbenben",
+  "phone": "0404040406",
+  "adress": "Les bois",
+  "zip_code": "38810",
+  "city": "Grenoble",
+  "status": true,
+  "role": "user",
+  "agreement": true
+}
+
+### VISITEUR (non autorisé) = Modification d'un utilisateur par son id
+PATCH {{endpoint}}/users/3
+Content-Type: application/json
+
+{
+  "first_name": "Ben",
+  "last_name": "Bond",
+  "email": "bob@gmail.com",
+  "password": "benbenben",
+  "phone": "0404040406",
+  "adress": "Les bois",
+  "zip_code": "38810",
+  "city": "Grenoble",
+  "status": true,
+  "role": "user",
+  "agreement": true
+}

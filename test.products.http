@@ -1,0 +1,177 @@
+
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+@route=products
+
+
+### Page 404
+GET {{endpoint}}/truc
+
+
+#########################  FEATURE /PRODUCT  #####################
+
+### visiteur (non-autorisé) = récupération de TOUS les produits
+GET {{endpoint}}/{{route}}
+
+### ADMIN (autorisé) = récupération de TOUS les produits
+GET {{endpoint}}/{{route}}
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0yMVQxMzowNTo1MS43MzRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODY3NTY2N30.f61vt21flPrrGu3FkJXMUo_jeZNw8qlsDRygr2vKhGk
+
+### CLIENT (autorisé) = récupération de TOUS les poduits
+GET {{endpoint}}/{{route}}
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+
+### ADMIN = creation d'un produit
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight": 1013,
+  "price": 5.60,
+  "status": true,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+### CLIENT = creation d'un produit
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+{
+  "weight": 1015,
+  "price": 5.60,
+  "status": true,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+
+
+### création d'un produit avec infos manquantes
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight" : 1012,
+  "status" : true,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+### creation d'un produit avec une propriété mal typée
+POST {{endpoint}}/{{route}}
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight" : 1000,
+  "price":  "3.0",
+  "status" : "true",
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+
+
+#########################  FEATURE /PRODUCT/:id  #####################
+
+### ADMIN (autorisé) = récupération d'un produit avec un id
+GET {{endpoint}}/{{route}}/3
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0yMVQxMzowNTo1MS43MzRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODY3NjAwN30.BNJGMEk_Mwu8pFBCzag0ZPn6sF3cYKkm6utCiOpLEvc
+
+### CLIENT = récupération d'un produit avec un id
+GET {{endpoint}}/{{route}}/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0yMVQxMzowNTo1MS43MzRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODY3NTk1M30.Sv4WOsbPdb7DZ4jC2H_NpsR-RcbJk9aOCxTiTRrd5qw
+
+
+### récupération d'un produit avec un id qui n'est pas un nombre
+GET {{endpoint}}/{{route}}/n
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+### récupération d'un produit avec un id qui n'existe pas
+GET {{endpoint}}/{{route}}/200
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+
+### ADMIN = Modification d'un produit par son id
+PATCH {{endpoint}}/{{route}}/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight" : 1006,
+  "price":  5.60,
+  "status" : false,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+### CLIENT = Modification d'un produit par son id
+PATCH {{endpoint}}/{{route}}/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+
+{
+  "weight" : 1006,
+  "price":  5.60,
+  "status" : false,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+
+
+### Modification d'un produit par un id incorrect
+PATCH {{endpoint}}/{{route}}/bip
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight" : 1000,
+  "price":  "5,60",
+  "status" : true,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+### Modification d'un produit avec un id inexistant
+PATCH {{endpoint}}/{{route}}/200
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight" : 1000,
+  "price":  5.60,
+  "status" : true,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+### Modification d'un produit avec un paramètre manquant
+PATCH {{endpoint}}/{{route}}/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight" : 1000,
+  "status" : true,
+  "bread_type_id": 1,
+  "mould_id": 2
+}
+
+### Modification d'un produit avec un paramètre avec le mauvais type
+PATCH {{endpoint}}/{{route}}/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "weight" : 1007,
+  "price":  "5.70",
+  "status" : "false",
+  "bread_type_id": 1,
+  "mould_id": 2
+}

@@ -1,0 +1,199 @@
+
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+
+### Page 404
+GET {{endpoint}}/truc
+
+
+
+#########################  FEATURE SIGNUP  #################################
+
+### inscription avec un utilisateur et mot de passe correct
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+  "last_name" : "fevrier",
+  "first_name":  "Pierre",
+  "phone": "0101010101", 
+  "zip_code" : "25500",
+  "adress" : "3 rue des lilas",
+  "city": "grenoble",
+  "status": false,
+  "role": "client",
+  "agreement": true,
+  "email": "wfevrier@gmail.com",
+  "password": "koepsy65",
+  "passwordConfirm": "koepsy65"
+}
+
+### inscription avec un utilisateur déjà dans la base
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+  "last_name" : "fevrier",
+  "first_name":  "Pierre",
+  "phone": "0101010101", 
+  "zip_code" : "25500",
+  "adress" : "3 rue des lilas",
+  "city": "grenoble",
+  "status": false,
+  "role": "client",
+  "agreement": true,
+  "email": "dmars@gmail.com",
+  "password": "koepsy65",
+  "passwordConfirm": "koepsy65"
+}
+
+### inscription avec un email qui n'est pas un email
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+  "last_name" : "fevrier",
+  "first_name":  "Pierre",
+  "phone": "0101010101", 
+  "zip_code" : "25500",
+  "adress" : "3 rue des lilas",
+  "city": "grenoble",
+  "status": false,
+  "role": "client",
+  "agreement": true,
+  "email": "dmarsgmail.com",
+  "password": "koepsy65",
+  "passwordConfirm": "koepsy65"
+}
+
+### inscription avec un mot de passe inférieur à 8 caractères
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+  "last_name" : "fevrier",
+  "first_name":  "Pierre",
+  "phone": "0101010101", 
+  "zip_code" : "25500",
+  "adress" : "3 rue des lilas",
+  "city": "grenoble",
+  "status": false,
+  "role": "client",
+  "agreement": true,
+  "email": "dfevrier@gmail.com",
+  "password": "koepsy",
+  "passwordConfirm": "koepsy"
+}
+
+
+### inscription avec un mot de passe confirmé incorrect
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+  "last_name" : "fevrier",
+  "first_name":  "Pierre",
+  "phone": "0101010101", 
+  "zip_code" : "25500",
+  "adress" : "3 rue des lilas",
+  "city": "grenoble",
+  "status": false,
+  "role": "client",
+  "agreement": true,
+  "email": "dfevrier@gmail.com",
+  "password": "koepsy65",
+  "passwordConfirm": "koepsy"
+}
+
+### inscription avec une information manquante (ex: city)
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+  "last_name" : "fevrier",
+  "first_name":  "Pierre",
+  "phone": "0101010101", 
+  "zip_code" : "25500",
+  "adress" : "3 rue des lilas",
+  "status": false,
+  "role": "client",
+  "agreement": true,
+  "email": "dfevrier@gmail.com",
+  "password": "koepsy65",
+  "passwordConfirm": "koepsy65"
+}
+
+### inscription avec un boolean incorrect
+POST {{endpoint}}/signup
+Content-Type: application/json
+
+{
+  "last_name" : "fevrier",
+  "first_name":  "Pierre",
+  "phone": "0101010101", 
+  "zip_code" : "25500",
+  "adress" : "3 rue des lilas",
+  "city": "grenoble",
+  "status": "false",
+  "role": "client",
+  "agreement": true,
+  "email": "dfevrier@gmail.com",
+  "password": "koepsy65",
+  "passwordConfirm": "koepsy65"
+}
+
+
+#########################  FEATURE LOGIN  #################################
+
+### connexion avec un utilisateur et mot de passe correct
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+  "email": "pdupond@orange.com",
+  "password": "pierrepierre"
+}
+
+### connexion avec un utilisateur incorrect
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+  "email": "pdupond@orange.com",
+  "password": "$2y$10$MgudJBuJEIWfyvpt64EBxOwiynYHtqU1M24LjE06nQjzi9NbnaOs2"
+}
+
+### connexion avec un mot de passe incorrect
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+  "email": "pdupond@orange.fr",
+  "password": "pierre"
+}
+
+### connexion avec identifiant manquant
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+  "password": "pierre"
+}
+
+### connexion avec un mot de passe manquant
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+  "email": "pdupond@orange.fr"
+}
+
+### connexion avec un identifiant manquant
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+  "password": "pierrepierre"
+}
+
+

@@ -1,0 +1,53 @@
+<%- include('partials/header') %> 
+ 
+
+<h2>Liste des lieux associés au <%= date.date.toLocaleDateString('en-GB') %></h2>
+
+
+<div>    
+    <table>
+	    <thead>
+            <tr>
+                <th>Dates</th>
+                <th>Lieux associés</th>
+                <th>Statut</th>
+            </tr>
+	    </thead>
+            <% placesList.forEach(place => { %>
+            <tr>
+                <td><%= date.date.toLocaleDateString('en-GB') %></td> 
+                <td><%= place.name %></td> 
+                <td><%= place.status ? "Visible" : "Non visible" %></td>
+                <td><a href="/admin/dates-livraison/confirmation-suppression/<%= place.id %>"><button class="button">Supprimer</button></td></a> 
+
+            </tr>
+            <%}); %>
+        </table>
+<br>
+<br>
+<h2>Associer d'autres lieux de livraison</h2>
+    <form method="post" action="/admin/dates-livraison/<%= id %>/lieux-livraison">
+    
+    Date :<SELECT NAME= "date" >
+    <OPTION VALUE="<%= date.id %>" selected> <%= date.date.toLocaleDateString('en-GB') %>
+    </SELECT>
+    <br>   
+    <br>    
+    <div>
+        <label for="delivery_place_id" >Lieu de livraison : </label>
+        <br>
+        <br>
+            <% allPlaces.forEach(place => { %>
+        <input TYPE="checkbox" name="delivery_place_id" value="<%= place.id %>"><%= place.name %></br>
+        <% }) %>
+    </div> 
+    <br>
+    <br>
+        <button class="button" type="submit">Associer les lieux sélectionnés</button>
+    </form>
+
+    <br>
+    <br>
+    <a href="/admin/dates-livraison"> <button class="button">Retour</button></a> 
+
+<%- include('partials/footer') %>

@@ -1,0 +1,7 @@
+%syntax-version=1.0.0
+%project=obonpain
+
+create 2024-02-08T08:40:49Z Gadln <helenegadessaud@gmail.com> # database creation
+modify_contraint 2024-02-15T08:34:46Z Gadln <helenegadessaud@gmail.com> # change contraints
+modify_bread_type 2024-02-19T15:50:20Z Gadln <helenegadessaud@gmail.com> # add of a column for the bread range
+add_price 2024-02-21T07:47:31Z Audrey Avril <aud.avril@yahoo.com> # add column price on bread_has_order

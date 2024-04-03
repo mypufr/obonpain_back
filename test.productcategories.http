@@ -1,0 +1,184 @@
+
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+
+### Page 404
+GET {{endpoint}}/truc
+
+
+
+#########################  FEATURE /PRODUCT-CATEGORIES/:id/products  #####################
+
+### récupération de la liste de pain d'une gamme de pain avec l'id de la gamme
+GET {{endpoint}}/product-categories/1/products
+
+### récupération de la liste de pain d'une gamme de pain avec l'id de la gamme qui n'est pas un nombre
+GET {{endpoint}}/product-categories/n/products
+
+### récupération de la liste de pain d'une gamme de pain avec l'id de la gamme
+GET {{endpoint}}/product-categories/100/products
+
+
+
+
+#########################  FEATURE /PRODUCT-CATEGORIES/:id  #####################
+
+### ADMIN = récupération d'une gamme de pain avec un id
+GET {{endpoint}}/product-categories/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+
+### CLIENT = récupération d'une gamme de pain avec un id
+GET {{endpoint}}/product-categories/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+
+### récupération d'une gamme de pain avec un id qui n'est pas un nombre
+GET {{endpoint}}/product-categories/n
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+
+### récupération d'une gamme de pain avec un id qui n'existe pas
+GET {{endpoint}}/product-categories/200
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+
+
+
+###### PATCH  ######
+
+### ADMIN = Modification d'une gamme de pain par son id
+PATCH {{endpoint}}/product-categories/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "Pain complet2",
+  "description":  "super test",
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+### CLIENT = Modification d'une gamme de pain par son id
+PATCH {{endpoint}}/product-categories/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+{
+  "name" : "Pain complet2",
+  "description":  "super test",
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+
+### SANS TOKEN = Modification d'une gamme de pain par son id
+PATCH {{endpoint}}/product-categories/3
+Content-Type: application/json
+
+{
+  "name" : "Pain complet2",
+  "description":  "super test",
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+### ADMIN - token incorrect = Modification d'une gamme de pain par son id
+PATCH {{endpoint}}/product-categories/3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "Pain complet2",
+  "description":  "super test",
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+
+
+### Modification d'une gamme de pain par un id incorrect
+PATCH {{endpoint}}/product-categories/bip
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "Pain complet",
+  "description":  "super pain",
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+### Modification d'une gamme de pain avec un id inexistant
+PATCH {{endpoint}}/product-categories/200
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "Pain complet",
+  "description":  "super pain",
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+### Modification d'une gamme de pain avec un paramètre manquant
+PATCH {{endpoint}}/product-categories/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : "Pain complet",
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+### Modification d'une gamme de pain avec un paramètre avec le mauvais type
+PATCH {{endpoint}}/product-categories/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MiwibGFzdF9uYW1lIjoiR0FERVNTQVVEIiwiZmlyc3RfbmFtZSI6Ik5vw6ltaWUiLCJlbWFpbCI6Im5vZW1pZUBnbWFpbC5mciIsInBob25lIjoiMDcwNzA3MDcwNyIsImFkcmVzcyI6InJ1ZSBkdSBwYXJjIiwiemlwX2NvZGUiOiIzODUwMCIsImNpdHkiOiJDSElSRU5TIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiYWRtaW4iLCJhZ3JlZW1lbnQiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTAyLTE1VDE1OjAxOjA0LjY1NFoiLCJ1cGRhdGVkX2F0IjpudWxsfSwiaWF0IjoxNzA4MDY4NjA1fQ.Vzw5jnJEsowR4zB8bxSeyBX6dsqrJYi16_9rJ6RN2rc
+
+{
+  "name" : 3,
+  "photo": "Pain test.jpg", 
+  "status" : false
+}
+
+#########################  FEATURE /PRODUCT-CATEGORIES  #####################
+
+### récupération de TOUTES les gammes de pain
+GET {{endpoint}}/product-categories
+
+
+### creation d'une gamme de pain
+POST {{endpoint}}/product-categories
+Content-Type: application/json
+
+{
+  "name" : "Pain test2",
+  "description":  "super bon pain",
+  "photo": "Pain breton.jpg", 
+  "status" : true
+}
+
+### création d'une gamme de pain avec infos manquantes
+POST {{endpoint}}/product-categories
+Content-Type: application/json
+
+{
+  "name" : "Pain Breton",
+  "description":  "super bon pain",
+  "status" : true
+}
+
+### creation d'une gamme de pain avec boolean au lieu de string (ex: description)
+POST {{endpoint}}/product-categories
+Content-Type: application/json
+
+{
+  "name" : "Pain Breton",
+  "description":  true,
+  "photo": "Pain breton.jpg", 
+  "status" : true
+}
+
+

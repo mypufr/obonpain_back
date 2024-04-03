@@ -1,0 +1,87 @@
+<%- include('partials/header') %> 
+
+<h2>Liste des lieux de livraison</h2>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom du lieux</th>
+                <th>Adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Infos complémentaires</th>
+                <th>Statut</th>
+                <th></th>
+            </tr>
+        </thead>
+        
+        <% placesList.forEach(place => { %>
+            <tr>
+                <td><%= place.name %></td>
+                <td><%= place.adress %></td>
+                <td><%= place.zip_code %></td>
+                <td><%= place.city %></td>
+                <td><%= place.information %></td>
+                <td><%= place.status ? "Visible" : "Non visible" %></td>
+                <td><a href="/admin/lieux-livraison/<%= place.id %>"><button class="button">Modifier</button>
+                </td></a>
+            </tr>
+
+        <%}); %>
+    </table>
+</div>
+
+
+<% let route %>
+<% let title %>
+<% if (place.name === '') { %>
+    <% route = '/admin/lieux-livraison';%>
+    <% title = 'Création d\'un lieu de livraison';} else { %>
+    <% route = '/admin/lieux-livraison/' + place.id %>    
+    <% title = 'Modifier un lieu de livraison' } %> 
+
+<h2><%=title %></h2>
+
+<div>
+    <form method="post" action="<%= route %>">
+
+        <label for="name">Lieu de livraison</label>
+        <input type="text" name="name" id="name" value="<%= place.name %>" required>
+
+        <label for="adress">Adresse</label>
+        <input type="text" name="adress" id="adress" value="<%= place.adress %>" required>
+
+        <label for="zip_code">code postal</label>
+        <input type="number" name="zip_code" id="zip_code" value="<%= place.zip_code %>"required>
+
+        <label for="city">Ville</label>
+        <input type="text" name="city" id="city" value="<%= place.city %>" required>
+
+        <label for="information">Informations</label>
+        <textarea name="information" id="information" cols="60" rows="5" required><%= place.information %></textarea> 
+
+        <% let isCheckedTrue="" %>
+        <% let isCheckedFalse="" %>
+        <% place.status ? isCheckedTrue = "checked" : isCheckedFalse = "checked" %>
+        <input type="radio" name="status" id="statusTrue" value="true" <%= isCheckedTrue %>>
+        <label for="statusTrue">Lieu valide</label>
+        <input type="radio" name="status" id="statusFalse" value="false" <%= isCheckedFalse %>>
+        <label for="false">Lieu annulé</label> 
+        <br>
+        <br>
+        <div>
+            <% if (place.name === '') { %>
+            <button class="button" type="submit">Créer un nouveau lieu</button>
+            <%} else { %>
+            <button class="button" type="submit">Modifier le lieu</button>
+            <% } %>
+        </div>
+    </form>
+    <br>
+    <br>
+    <a href="/admin/lieux-livraison"> <button class="button">Annuler</button></a>
+
+</div>
+
+<%- include('partials/footer') %>

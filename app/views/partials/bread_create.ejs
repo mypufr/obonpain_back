@@ -1,0 +1,50 @@
+<%- include('partials/header') %>
+
+<h2>Détails d'un pain</h2>
+
+
+<form method="post" action="/admin/pains">
+    <div>
+        <label for="bread_type_id" >Nom de la gamme : </label>
+        <select name= "bread_type_id" required>
+            <option disabled selected>--Sélectionner une gamme de pain--</option>
+            <% productCategoriesList.forEach(productCategory => { %>
+            <option value="<%= productCategory.id %>"><%= productCategory.name %>           
+            <%}); %>
+
+            </select> 
+        
+    </div>
+    <div>
+        <label for="weight">Poids (en g) : </label>
+        <input type="number" name="weight" id="weight" value= "" size="10" required/>
+    </div>
+    <div>
+        <label for="price">Prix : </label>
+        <input type="text" name="price" id="price" value= "" size="10" required/>
+        <label for="price">€</label>
+    </div>
+
+    <div>
+        <label for="mould_id">Moule :  </label>
+        <select name= "mould_id">
+            <% mouldList.forEach(mould => { %>
+            <option value="<%= mould.id %>"><%= mould.name %> 
+            <%}); %>
+
+            </select> 
+    </div>
+
+    <div>
+        <input type="radio" name="status" id="statusTrue" value= "true" checked/>
+        <label for="true">Activé</label>
+        <input type="radio" name="status" id="statusFalse" value= "false"/>
+        <label for="false">désactivé</label>   
+    </div>
+
+
+        <button class="button" type="submit">Créer le pain</button>
+    </form>
+    <a href="/admin/pains"><button class="button">Annuler</button></a>
+
+<%- include('partials/footer') %>

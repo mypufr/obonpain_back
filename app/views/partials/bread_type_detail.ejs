@@ -1,0 +1,42 @@
+
+<%- include('partials/header') %>
+
+<h2>Détail d'une gamme de pains</h2>
+
+<form method="post" action="/admin/gamme-pains/<%= id %>">
+    <div>
+        <label for="name" >Nom de la gamme : </label>
+        <input type="text" name="name" id="name" value= "<%= name %>" size="40"/>
+    </div>
+
+    <div>
+        <label for="description">Description : </label>
+        <textarea name="description" cols="60" rows="5" id="description"><%= description %></textarea>    
+    </div>
+
+    <div>
+        <label for="ingredient">Ingrédient : </label>
+        <textarea name="ingredient" cols="60" rows="5" id="ingredient"><%= ingredient %></textarea> 
+    </div>
+
+    <div>
+        <label for="photo">Photo :  </label>
+        <input type="text" name="photo" id="photo" value= "<%= photo %>" size="60"/>
+    </div>
+
+    <div>
+        <% let isCheckedTrue="" %>
+        <% let isCheckedFalse ="" %>
+        <% if (status === true) { isCheckedTrue = "checked" } else {isCheckedFalse = "checked"} %>
+        <input type="radio" name="status" id="statusTrue" value= "true" <%=isCheckedTrue %>/>
+        <label for="true">Visible</label>
+        <input type="radio" name="status" id="statusFalse" value= "false" <%=isCheckedFalse %>/>
+        <label for="false">Non visible</label>   
+    </div>
+
+
+        <button class="button" type="submit">Modifier</button>
+    </form>
+    <a href="/admin/gamme-pains"><button class="button">Annuler</button></a>
+
+<%- include('partials/footer') %>

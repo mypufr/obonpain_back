@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+
+<h2>Détails d'un pain</h2>
+
+
+<form method="post" action="/admin/pains/<%= id %>">
+    <div>
+        <label for="bread_type_id" >Nom de la gamme : </label>
+        <select name= "bread_type_id" >
+            <% productCategoriesList.forEach(productCategory => { %>
+                <% let isSelected = ""%>
+                <% if (productCategory.id === bread.bread_type_id) { %>
+                <% isSelected = "selected" } %>
+            <option value="<%= productCategory.id %>" <%= isSelected %>><%= productCategory.name %>           
+            <%}); %>
+
+            </select> 
+        
+    </div>
+    <div>
+        <label for="weight">Poids (en g) : </label>
+        <input type="text" name="weight" id="weight" value= "<%= bread.weight %>" size="10"/>
+    </div>
+    <div>
+        <label for="price">Prix : </label>
+        <input type="text" name="price" id="price" value= "<%= parseFloat(bread.price).toFixed(2) %>" size="10"/>
+        <label for="price">€</label>
+    </div>
+
+    <div>
+        <label for="mould_id">Moule :  </label>
+        <select name= "mould_id">
+            <% mouldList.forEach(mould => { %>
+                <% let isSelectedMould = ""%>
+                <% if (mould.id === bread.mould_id) { %>
+                <% isSelectedMould = "selected" }%>
+            <option value="<%= mould.id %>" <%= isSelectedMould %>><%= mould.name %>           
+            <%}); %>
+
+            </select> 
+    </div>
+
+    <div>
+        <% let isCheckedTrue="" %>
+        <% let isCheckedFalse ="" %>
+        <% if (bread.status === true) { isCheckedTrue = "checked" } else {isCheckedFalse = "checked"} %>
+        <input type="radio" name="status" id="statusTrue" value= "true" <%= isCheckedTrue %>/>
+        <label for="true">Activé</label>
+        <input type="radio" name="status" id="statusFalse" value= "false" <%= isCheckedFalse %>/>
+        <label for="false">désactivé</label>   
+    </div>
+
+
+        <button class="button" type="submit">Modifier</button>
+    </form>
+    <a href="/admin/pains"><button class="button">Annuler</button></a>
+
+
+
+<%- include('partials/footer') %>

@@ -1,0 +1,48 @@
+<%- include('partials/header') %> 
+ 
+<h2>Détail d'un utilisateur</h2>
+
+<div class=""></div>
+<div class="filtre_by_name">
+    
+        <div> Nom <%= user.last_name %></div>
+
+        <div> Prénom <%= user.first_name %></div>
+
+        <div> Email <%= user.email %></div>
+
+        <div> Téléphone <%= user.phone %></div>
+
+        <div> Adresse <%= user.adress %></div>
+
+        <div> Code Postal <%= user.zip_code %></div>
+
+        <div> Ville <%= user.city %></div>
+        
+        <% let agreement %>
+        <% if (user.agreement === true) { agreement = "inscrit" } else {agreement = "non inscrit"} %>
+        
+        <div> Newsletter <%= agreement %> </div>
+
+        <div> Role <%= user.role %></div>
+   
+    <form method="post" action="/admin/clients/<%= id %>">
+        <% let isCheckedTrue="" %>
+        <% let isCheckedFalse ="" %>
+        <% if (user.status === true) { isCheckedTrue = "checked" } else {isCheckedFalse = "checked"} %>
+        <input type="radio" name="status" id="statusTrue" value= "true" <%=isCheckedTrue %> >
+        <label for="statusTrue">Client autorisé</label>
+        <input type="radio" name="status" id="statusFalse" value= "false" <%=isCheckedFalse %> />
+        <label for="false">Client non autorisé</label> 
+        <br>
+        <br>
+        <button class="button" type="submit">Mettre à jour</button>
+        <br>
+        <br>
+    </form>   
+    <a href="/admin/clients"><button class="button">Annuler</button></a>
+</div>
+
+</div>
+
+<%- include('partials/footer') %>

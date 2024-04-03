@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<h2>Créer une commande</h2>
+
+    <div>
+        <ul>Choisir un Lieu de livraison :</ul>
+        <% placesList.forEach(place => { %>
+        
+            <li>
+                <a href="/admin/commandes/lieux-livraison/<%= place.id %>"><button class="button">choisir ce lieu</button></a>
+                <%= place.name %>
+                
+                <% }); %>
+            </li>
+        </ul>
+        <br>
+
+        <a href="/admin/commandes"><button class="button">retour à la liste des commandes</button></a>          
+    </div>
+
+
+<%- include('partials/footer') %>

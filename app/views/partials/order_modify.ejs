@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+<h2>Modifier le pain d'une commande</h2>
+
+    <div>Lieu de livraison : <%= order.last_name %> <%= order.first_name %> / <%= order.email %></div> 
+
+    <div>Date de livraison : <%= order.date.toLocaleDateString('en-GB') %></div> 
+
+    <div>Lieu de livraison : <%= order.delivery_place_name %></div>     
+
+    <div>Pain : <%= order.name %> - <%= order.weight %> g</div>  
+    
+    <% let mould %>
+    <% if (order.mould_name === 'Non moulé') { mould = '/' } else {mould = "moulé"} %>           
+
+    <div>Moulage : <%= mould %></div>
+
+    <div>Prix : <%= parseFloat(order.price).toFixed(2) %> €</div>   
+
+    <form method="post" action="/admin/commandes/modification/<%= id %>">
+
+        <label for="quantity">Quantité : </label>
+        <input type="number" name="quantity" value="<%= order.quantity %>" />
+
+        <br>
+        <button class="button" type="submit">Modifier la quantité</button>
+    </form>
+    <br>
+    <br>
+    <a href="/admin/commandes"><button class="button">Annuler les modifications</button></a>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<a href="/admin/commandes/confirmation-suppression/<%= id %>"><button class="button">supprimer ce pain de cette commande</button></a>
+
+
+<%- include('partials/footer') %>

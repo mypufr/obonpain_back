@@ -1,0 +1,147 @@
+@endpoint=http://localhost:{{$dotenv PORT}}/api
+
+@route=orders
+
+
+
+#########################  FEATURE /ORDER  #####################
+
+### récupération de TOUTES les commandes
+GET {{endpoint}}/{{route}}
+
+
+#########################  FEATURE /ORDER/:id  #####################
+### visiteur (non-autorisé) = récupération du détail d'une commande
+GET {{endpoint}}/{{route}}/2
+
+
+### admin (autorisé) = récupération du détail d'une commande avec un id client correct
+GET {{endpoint}}/{{route}}/3
+
+
+### client (autorisé) = récupération du détail d'une commande
+GET {{endpoint}}/{{route}}/1
+
+
+### client (autorisé) = récupération du détail d'une commande avec un id client qui est incorrect
+GET {{endpoint}}/{{route}}/truc
+
+
+### client (autorisé) = récupération du détail d'une commande avec un id d'un client qui n'existe pas
+GET {{endpoint}}/{{route}}/100
+
+
+#####  PATCH  #####
+
+### client (autorisé) = récupération du détail d'une commande avec un id d'un client qui n'existe pas
+PATCH {{endpoint}}/{{route}}/2
+Content-Type: application/json
+
+{
+  "bread_id":  2,
+  "quantity": 9, 
+  "creator_id" : 2,
+  "customer_id" : 1,
+  "delivery_place_id": 2,
+  "delivery_date_id": 2,
+  "price": 5.60
+}
+
+
+#####   DELETE   #####
+
+### Client (autorisé) = suppression d'une commande
+DELETE {{endpoint}}/{{route}}/3
+
+
+#########################  FEATURE /USERS/:id/ORDERS  #####################
+
+### visiteur (non-autorisé) = récupération de TOUTES les commandes d'un client par son id
+GET {{endpoint}}/users/1/orders
+
+### ADMIN (non-autorisé) = récupération de TOUTES les commandes d'un client par son id
+GET {{endpoint}}/users/1/orders
+
+
+### CLIENT (autorisé) = récupération de TOUTES les commandes d'un client par son id
+GET {{endpoint}}/users/1/orders
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0yMVQxMzowNTo1MS43MzRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODY3NzY0Nn0.a3BI4aLbjTc8LVPyj3yPoGi99QQcLX9wDw9R-Runxes
+
+### CLIENT (autorisé) = récupération de TOUTES les commandes d'un client par un id qui n'est pas un nombre
+GET {{endpoint}}/users/bip/orders
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+
+### CLIENT (autorisé) = récupération de TOUTES les commandes d'un client par un id qui n'existe pas
+GET {{endpoint}}/users/100/orders
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJpZCI6MSwibGFzdF9uYW1lIjoiRFVQT05EIiwiZmlyc3RfbmFtZSI6IlBpZXJyZSIsImVtYWlsIjoicGR1cG9uZEBvcmFuZ2UuY29tIiwicGhvbmUiOiIwNjA2MDYwNjA2IiwiYWRyZXNzIjoiMjQgcnVlIGR1IHBhcmFkaXMiLCJ6aXBfY29kZSI6IjM4MTAwIiwiY2l0eSI6IkdSRU5PQkxFIiwic3RhdHVzIjp0cnVlLCJyb2xlIjoiY2xpZW50IiwiYWdyZWVtZW50Ijp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0xNVQxNTowMTowNC42NTRaIiwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTcwODAxNzkwNH0.xdWBlihyB04mxFfyA3uOEQBYlB1ryh5c1rsA6kwf-L4
+
+
+######   POST   ######
+
+### creation d'une commande pour un utilisateur par son id
+POST {{endpoint}}/users/1/orders
+Content-Type: application/json
+
+{
+  "bread_id": 1,
+  "quantity": 10,
+  "creator_id": 1,
+  "customer_id": 1,
+  "delivery_place_id": 2,
+  "delivery_date_id": 2,
+  "price": 5.6
+}
+
+### creation d'une commande pour un utilisateur par un id incorrect
+POST {{endpoint}}/users/n/orders
+Content-Type: application/json
+
+{
+  "bread_id": 1,
+  "quantity": 10,
+  "creator_id": 1,
+  "customer_id": 1,
+  "delivery_place_id": 2,
+  "delivery_date_id": 2
+}
+
+### creation d'une commande pour un utilisateur par un id qui n'existe pas
+POST {{endpoint}}/users/100/orders
+Content-Type: application/json
+
+{
+  "bread_id": 1,
+  "quantity": 10,
+  "creator_id": 1,
+  "customer_id": 1,
+  "delivery_place_id": 2,
+  "delivery_date_id": 2
+}
+
+### creation d'une commande pour un utilisateur par un id avec une info manquante
+POST {{endpoint}}/users/1/orders
+Content-Type: application/json
+
+{
+  "bread_id": 1,
+  "quantity": 10,
+  "creator_id": 1,
+  "customer_id": 1,
+
+  "delivery_date_id": 2
+}
+
+### creation d'une commande pour un utilisateur par son id avec une info mal typée
+POST {{endpoint}}/users/1/orders
+Content-Type: application/json
+
+{
+  "bread_id": 1,
+  "quantity": 10,
+  "creator_id": true,
+  "customer_id": 1,
+  "delivery_place_id": 2,
+  "delivery_date_id": 2
+}
+

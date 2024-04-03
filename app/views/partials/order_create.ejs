@@ -1,0 +1,79 @@
+<%- include('partials/header') %>
+
+<h2>Créer une commande</h2>
+
+<form method="post" action="/admin/commandes/lieux-livraison/<%= id %>">
+
+    <h3>** Lieu de livraison **</h3>
+        <label for="delivery_place_id">Lieu de livraison choisi : </label>
+        <select name="delivery_place_id" id="delivery_place_id" required>
+            <option value="<%= id %>" selected><%= place.name %></option>
+        </select>
+
+        <a href="/admin/commandes/lieux-livraison"><button class="button">changer de lieu</button></a>
+
+    
+    <h3>** Créateur de la commande **</h3>
+        <select name="creator_id" required>
+        <% adminsTrueList.forEach(creator => { %>
+        <option value="<%= creator.id %>"><%= creator.last_name %> <%= creator.first_name %> </option>    
+    <%}); %>
+
+    </select>
+
+      
+    
+    <h3>** Choisir un client **</h3>
+    
+    <select name="customer_id" required>
+        <option disabled selected>--Sélectionner un client--</option>
+        <% clientsTrueList.forEach(client => { %>
+        <option value="<%= client.id %>"><%= client.last_name %> <%= client.first_name %> / <%= client.email %> </option>    
+    <%}); %>
+
+    </select>
+
+
+
+    <h3>** Choisir les dates de livraison **</h3>
+    
+    <% datesToComeList.forEach(date => { %>
+    <input Type="checkbox" name="delivery_date_id_list" value="<%= date.id %>" ><%= date.date.toLocaleDateString('en-GB') %><br>
+    <%}); %>
+
+    <h3>** Choisir les pains **</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Pain</th>
+                    <th>poids</th>                         
+                    <th>Moulage</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th></th>  
+                    </tr>
+            </thead>
+            <% productsTrueList.forEach(product => { %>
+                    <tr>
+                    <td><%= product.bread_type_name %></td>
+                    <td><%= product.weight %> g</td>
+                    
+                    <% let mould %>
+                    <% if (product.mould_name === 'Non moulé') { mould = '/' } else {mould = "moulé"} %>           
+               
+                    <td><%= mould %></td>
+                    <th><%= parseFloat(product.price).toFixed(2) %> €</th>         
+                    <td><input type="number" name="<%= product.id %>" size="10"></td>
+                    </tr>
+            <%}); %>
+        
+        </table>
+        <br>
+        <br>
+        <button class="button" type="submit">Passer la commande</button>
+</form>
+<br>
+<a href="/admin/commandes"><button class="button">Annuler</button></a>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,67 @@
+<%- include('partials/header') %>
+
+<h2>Listes des moules</h2>
+
+<table>
+	<thead>
+        <tr>
+            <th>nom</th>
+            <th>Quantité</th> 
+            <th>Statut</th>
+            <th></th>            
+            </tr>
+	</thead>
+	<% mouldsList.forEach(mould => { %>
+            <tr>
+            <td><%= mould.name %></td>
+            <td><%= mould.quantity %></td>              
+            <% let status %>
+            <% if (mould.status === true) { status = "activé" } else {status = "désactivé"} %>           
+            <td><%= status %></td>
+            <td><a href="/admin/moules/<%= mould.id %>"><button class="button">Modifier</button></td>
+            </tr></a>
+    <%}); %>
+
+</table>
+
+<% let route %>
+<% let title %>
+<% if (mould.name === '') { %>
+    <% route = '/admin/moules';%>
+    <% title = 'Création d\'un nouveau moule';} else { %>
+    <% route = '/admin/moules/' + mould.id %>    
+    <% title = 'Modification d\'un moule' } %> 
+
+<h2><%=title %></h2>
+
+<form method="post" action="<%= route %>">
+    
+    <label for="name">Nom du moule : </label>
+    <input name="name" id="name" value ="<%= mould.name %>" size="20" required/>
+
+    <label for="quantity">Quantité : </label>
+    <input name="quantity" id="quantity" value ="<%= mould.quantity %>" size="20" required/>
+
+    <% let isCheckedTrue="" %>
+    <% let isCheckedFalse ="" %>
+    <% if (mould.status === true) { isCheckedTrue = "checked" } else {isCheckedFalse = "checked"} %>
+    <input type="radio" name="status" id="statusTrue" value="true" <%=isCheckedTrue %>/>
+    <label for="true">Visible</label>
+    <input type="radio" name="status" id="statusFalse" value="false" <%=isCheckedFalse %>/>
+    <label for="false">Non visible</label>   
+    <br>
+    <br>
+    <div>
+        <% if (mould.name === '') { %>
+        <button class="button" type="submit">Créer un nouveau moule</button>
+        <%} else { %>
+        <button class="button" type="submit">Modifier ce moule</button>
+        <% } %>
+    </div>
+</form>
+<br>
+<br>
+<a href="/admin/moules"> <button class="button">Annuler</button></a>
+
+
+<%- include('partials/footer') %>
